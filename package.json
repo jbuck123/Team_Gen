@@ -1,0 +1,23 @@
+{
+  "name": "team_gen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbuck123/Team_Gen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jbuck123/Team_Gen/issues"
+  },
+  "homepage": "https://github.com/jbuck123/Team_Gen#readme",
+  "dependencies": {
+    "inquirer": "^9.0.2"
+  }
+}
