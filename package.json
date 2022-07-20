@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/jbuck123/Team_Gen#readme",
   "dependencies": {
-    "inquirer": "^9.0.2"
+    "inquirer": "^8.2.4"
   }
 }
