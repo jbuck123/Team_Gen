@@ -45,13 +45,27 @@ function menuFunc() {
   inquirer.prompt([
     {
       type: "list",
-      name: "continue1",
-      message: "do you wish to add more to the squad?",
-      choices: ["yes", "no"],
+      name: "menu",
+      message: "do you wish to add an engineer or an intern",
+      choices: ["Engineer", "Intern"],
     },
-  ]);
+  ])
+  .then((answer1) => {
+      console.log(answer1)
+      if(answer1.menu === "Engineer"){
+          addEngineer()
+      } else{
+          addIntern()
+      }
+  })
 }
 
+function addEngineer(){
+    console.log("engineer working func")
+}
+function addIntern(){
+    console.log("intern func")
+}
 // const firstQuestion = [
 // {
 //     type: 'list',
