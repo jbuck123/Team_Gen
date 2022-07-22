@@ -2,88 +2,39 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const Manager = require("./manager");
 
+
+let array = [];
+
+// QUESTIONS
+
 const firstQuestion = [
-  {
-    type: "input",
-    name: "managerName",
-    message: "Please enter the manager's name.",
-  },
-  {
-    type: "input",
-    name: "managerID",
-    message: "Please enter the manager ID number.",
-  },
-  {
-    type: "input",
-    name: "managerEmail",
-    message: "please enter the manager email.",
-  },
-  {
-    type: "input",
-    name: "officeName",
-    message: "please enter the manager's office number.",
-  },
-  {
-    type: "list",
-    name: "continue1",
-    message: "do you wish to add more to the squad?",
-    choices: ["yes", "no"],
-  },
-];
-
-inquirer.prompt(firstQuestion).then((answer) => {
-  console.log(answer);
-  if (answer.continue1 === "yes") {
-    menuFunc();
-  } else {
-    // templateLit(answer)
-    // push answers too the display function
-  }
-});
-
-function menuFunc() {
-  inquirer
-    .prompt([
-      {
-        type: "list",
-        name: "menu",
-        message: "do you wish to add an engineer or an intern",
-        choices: ["Engineer", "Intern"],
-      },
-    ])
-    .then((answer1) => {
-      console.log(answer1);
-      if (answer1.menu === "Engineer") {
-        addEngineer();
-      } else {
-        addIntern();
-      }
-    });
-}
-
-function addEngineer() {
-    inquirer.prompt(engineerQuestions).then((answer) => {
-        console.log(answer);
-        if (answer.continue1 === "yes") {
-        
-        } else {
-          // templateLit(answer)
-          // push answers too the display function
-        }
-      });
-  
-}
-function addIntern() {
-    inquirer.prompt(internQuestions).then((answer) => {
-        console.log(answer);
-        if (answer.continue1 === "yes") {
-          menuFunc();
-        } else {
-          // templateLit(answer)
-          // push answers too the display function
-        }
-      });
-}
+    {
+      type: "input",
+      name: "managerName",
+      message: "Please enter the manager's name.",
+    },
+    {
+      type: "input",
+      name: "managerID",
+      message: "Please enter the manager ID number.",
+    },
+    {
+      type: "input",
+      name: "managerEmail",
+      message: "please enter the manager email.",
+    },
+    {
+      type: "input",
+      name: "officeName",
+      message: "please enter the manager's office number.",
+    },
+    {
+      type: "list",
+      name: "continue1",
+      message: "do you wish to add more to the squad?",
+      choices: ["yes", "no"],
+    },
+  ];
 
 const engineerQuestions = [
   {
@@ -142,6 +93,82 @@ const internQuestions = [
       choices: ["yes", "no"]
     },
   ];
+
+
+
+
+//FUNCTION STARTS 
+
+
+
+//this starts with the first question which is who is manager at Default.
+
+inquirer.prompt(firstQuestion).then((answer) => {
+  console.log(answer);
+  array.push(answer)
+  console.log(array)
+  if (answer.continue1 === "yes") {
+    menuFunc();
+  } else {
+    // this is where you will display the team
+  }
+});
+
+function menuFunc() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "menu",
+        message: "do you wish to add an engineer or an intern",
+        choices: ["Engineer", "Intern"],
+      },
+    ])
+    .then((answer1) => {
+      console.log(answer1);
+      if (answer1.menu === "Engineer") {
+        addEngineer();
+      } else {
+        addIntern();
+      }
+    });
+}
+
+function addEngineer() {
+    inquirer.prompt(engineerQuestions).then((answer) => {
+        console.log(answer);
+      array.push(answer)
+      console.log(answer)
+      
+      if (answer.continue1 === "yes") {
+        menuFunc();
+      } else {
+          //print function
+      }
+      
+      })
+      
+      // .then chain this in the future to get better s
+  
+}
+function addIntern() {
+    inquirer.prompt(internQuestions).then((answer) => {
+        console.log(answer);
+        array.push(answer)
+        console.log(array)
+       
+
+        if (answer.continue1 === "yes") {
+            menuFunc();
+          } else {
+              //print function
+          }
+      });
+    //.then chain this with classes(in the future).... use more advanced coding 
+}
+
+
+
 
 
 
