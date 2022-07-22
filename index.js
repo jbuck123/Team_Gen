@@ -42,30 +42,107 @@ inquirer.prompt(firstQuestion).then((answer) => {
 });
 
 function menuFunc() {
-  inquirer.prompt([
-    {
-      type: "list",
-      name: "menu",
-      message: "do you wish to add an engineer or an intern",
-      choices: ["Engineer", "Intern"],
-    },
-  ])
-  .then((answer1) => {
-      console.log(answer1)
-      if(answer1.menu === "Engineer"){
-          addEngineer()
-      } else{
-          addIntern()
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "menu",
+        message: "do you wish to add an engineer or an intern",
+        choices: ["Engineer", "Intern"],
+      },
+    ])
+    .then((answer1) => {
+      console.log(answer1);
+      if (answer1.menu === "Engineer") {
+        addEngineer();
+      } else {
+        addIntern();
       }
-  })
+    });
 }
 
-function addEngineer(){
-    console.log("engineer working func")
+function addEngineer() {
+    inquirer.prompt(engineerQuestions).then((answer) => {
+        console.log(answer);
+        if (answer.continue1 === "yes") {
+        
+        } else {
+          // templateLit(answer)
+          // push answers too the display function
+        }
+      });
+  
 }
-function addIntern(){
-    console.log("intern func")
+function addIntern() {
+    inquirer.prompt(firstQuestion).then((answer) => {
+        console.log(answer);
+        if (answer.continue1 === "yes") {
+          menuFunc();
+        } else {
+          // templateLit(answer)
+          // push answers too the display function
+        }
+      });
 }
+
+const engineerQuestions = [
+  {
+    type: "input",
+    name: "engineerName",
+    message: "Please enter the engineer's name.",
+  },
+  {
+    type: "input",
+    name: "engineerID",
+    message: "Please enter the engineer's ID.",
+  },
+  {
+    type: "input",
+    name: "engineerEmail",
+    message: "Please enter the engineer's email.",
+  },
+  {
+    type: "input",
+    name: "engineerGithub",
+    message: "Please enter the engineer's Github.",
+  },
+  {
+    type: "list",
+    name: "continue",
+    message: "Do you wish to add to your squad?",
+    choices: ["yes", "no"]
+  },
+];
+
+const internQuestions = [
+    {
+      type: "input",
+      name: "internName",
+      message: "Please enter the intern's name.",
+    },
+    {
+      type: "input",
+      name: "internID",
+      message: "Please enter the intern's ID.",
+    },
+    {
+      type: "input",
+      name: "internEmail",
+      message: "Please enter the intern's email.",
+    },
+    {
+      type: "input",
+      name: "internGithub",
+      message: "Please enter the intern's Github.",
+    },
+    {
+      type: "list",
+      name: "continue",
+      message: "Do you wish to add to your squad?",
+      choices: ["yes", "no"]
+    },
+  ];
+
 // const firstQuestion = [
 // {
 //     type: 'list',
