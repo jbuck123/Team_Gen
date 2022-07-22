@@ -74,7 +74,7 @@ function addEngineer() {
   
 }
 function addIntern() {
-    inquirer.prompt(firstQuestion).then((answer) => {
+    inquirer.prompt(internQuestions).then((answer) => {
         console.log(answer);
         if (answer.continue1 === "yes") {
           menuFunc();
@@ -142,6 +142,21 @@ const internQuestions = [
       choices: ["yes", "no"]
     },
   ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // const firstQuestion = [
 // {
