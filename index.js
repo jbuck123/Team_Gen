@@ -12,6 +12,15 @@ const firstQuestion = [
       type: "input",
       name: "managerName",
       message: "Please enter the manager's name.",
+      //validating input... if this returns false, ends the app.
+      validate: nameInput => {
+          if (nameInput) {
+              return true;
+          } else {
+              console.log("Please enter a valid name")
+              return false;
+          }
+      }
     },
     {
       type: "input",
@@ -136,14 +145,14 @@ function menuFunc() {
 
 function addEngineer() {
     inquirer.prompt(engineerQuestions).then((answer) => {
-        console.log(answer);
+
       array.push(answer)
       console.log(answer)
       
-      if (answer.continue1 === "yes") {
+      if (answer.continue === "yes") {
         menuFunc();
       } else {
-          //print function
+          displaySquad(array)
       }
       
       })
@@ -158,18 +167,27 @@ function addIntern() {
         console.log(array)
        
 
-        if (answer.continue1 === "yes") {
+        if (answer.continue === "yes") {
             menuFunc();
           } else {
-              //print function
+              displaySquad(array)
           }
       });
     //.then chain this with classes(in the future).... use more advanced coding 
 }
 
+// print array to html 
+// create the team
+
+function displaySquad(array){
+const pageContent = JSON.stringify(array)
+console.log("final array" + pageContent)
 
 
-
+// fs.writeFile("index.html", pageContent, (err) => {
+//     err ? console.log(err): console.log('its working')
+// })
+}
 
 
 
