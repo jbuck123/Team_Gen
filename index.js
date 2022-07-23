@@ -3,6 +3,7 @@ const inquirer = require("inquirer");
 const Manager = require("./manager");
 
 
+
 let array = [];
 
 // QUESTIONS
@@ -26,20 +27,38 @@ const firstQuestion = [
       type: "input",
       name: "managerID",
       message: "Please enter the manager ID number.",
+      //validate ID .. make sure it is a number
+      validate: id_input => {
+          if (isNaN(id_input)) {
+              console.log('please enter a valid ID number');
+              return false;
+          } else {
+              return true;
+          }
+      }
     },
     {
       type: "input",
       name: "managerEmail",
       message: "please enter the manager email.",
+      // i cant figure out how to 
     },
     {
       type: "input",
       name: "officeName",
       message: "please enter the manager's office number.",
+      validate: id_input => {
+        if (isNaN(id_input)) {
+            console.log('please enter a valid ID number');
+            return false;
+        } else {
+            return true;
+        }
+    }
     },
     {
       type: "list",
-      name: "continue1",
+      name: "continue",
       message: "do you wish to add more to the squad?",
       choices: ["yes", "no"],
     },
@@ -50,11 +69,27 @@ const engineerQuestions = [
     type: "input",
     name: "engineerName",
     message: "Please enter the engineer's name.",
+    validate: nameInput => {
+        if (nameInput) {
+            return true;
+        } else {
+            console.log("Please enter a valid name")
+            return false;
+        }
+    }
   },
   {
     type: "input",
     name: "engineerID",
     message: "Please enter the engineer's ID.",
+    validate: id_input => {
+        if (isNaN(id_input)) {
+            console.log('please enter a valid ID number');
+            return false;
+        } else {
+            return true;
+        }
+    }
   },
   {
     type: "input",
@@ -64,7 +99,15 @@ const engineerQuestions = [
   {
     type: "input",
     name: "engineerGithub",
-    message: "Please enter the engineer's Github.",
+    message: "Please enter the engineer's Github username.",
+    validate: nameInput => {
+        if (nameInput) {
+            return true;
+        } else {
+            console.log("Please enter a valid name")
+            return false;
+        }
+    }
   },
   {
     type: "list",
@@ -79,11 +122,27 @@ const internQuestions = [
       type: "input",
       name: "internName",
       message: "Please enter the intern's name.",
+      validate: nameInput => {
+        if (nameInput) {
+            return true;
+        } else {
+            console.log("Please enter a valid name")
+            return false;
+        }
+    }
     },
     {
       type: "input",
       name: "internID",
       message: "Please enter the intern's ID.",
+      validate: id_input => {
+        if (isNaN(id_input)) {
+            console.log('please enter a valid ID number');
+            return false;
+        } else {
+            return true;
+        }
+    }
     },
     {
       type: "input",
@@ -93,7 +152,15 @@ const internQuestions = [
     {
       type: "input",
       name: "internGithub",
-      message: "Please enter the intern's Github.",
+      message: "Please enter the intern's school.",
+      validate: nameInput => {
+        if (nameInput) {
+            return true;
+        } else {
+            console.log("Please enter a valid name")
+            return false;
+        }
+    }
     },
     {
       type: "list",
@@ -116,7 +183,7 @@ inquirer.prompt(firstQuestion).then((answer) => {
   console.log(answer);
   array.push(answer)
   console.log(array)
-  if (answer.continue1 === "yes") {
+  if (answer.continue === "yes") {
     menuFunc();
   } else {
     // this is where you will display the team
