@@ -8,7 +8,7 @@ let array = [];
 
 // QUESTIONS
 
-const firstQuestion = [
+const firstArray = [
     {
       type: "input",
       name: "managerName",
@@ -45,7 +45,7 @@ const firstQuestion = [
     },
     {
       type: "input",
-      name: "officeName",
+      name: "officeNumber",
       message: "please enter the manager's office number.",
       validate: id_input => {
         if (isNaN(id_input)) {
@@ -64,13 +64,21 @@ const firstQuestion = [
     },
   ];
 
-const secondQuestion = [
-    {
+
+
+
+// 2nd array
+
+
+
+
+const secondArray = [
+ {
         type: "list",
         Name: "role",
         message: "Do you want to add an intern or an engineer",
         choices: ["Intern", "Engineer"]
-    },
+},
   {
     type: "input",
     name: "name",
@@ -106,6 +114,7 @@ const secondQuestion = [
     type: "input",
     name: "github",
     message: "Please enter the engineer's Github username.",
+    when: (input) => input.role === "Engineer",
     validate: nameInput => {
         if (nameInput) {
             return true;
@@ -116,9 +125,14 @@ const secondQuestion = [
     }
   },
   {
+    name: 'school',
+    message: 'where does the intern attend school?',
+    when: (input) => input.role ==="Intern"
+  },
+  {
     type: "list",
     name: "continue",
-    message: "Do you wish to add to your squad?",
+    message: "Do you want to add to your squad?",
     choices: ["yes", "no"]
   },
 ];
@@ -135,82 +149,129 @@ const secondQuestion = [
 
 //this starts with the first question which is who is manager at Default.
 
-inquirer.prompt(firstQuestion).then((answer) => {
-  console.log(answer);
-  array.push(answer)
+inquirer.prompt(firstArray).then((managerData) => {
+  array.push(managerData)
   console.log(array)
   if (answer.continue === "yes") {
-    menuFunc();
+   addEmployee()
   } else {
     // this is where you will display the team
   }
 });
 
-function menuFunc() {
-  inquirer
-    .prompt([
-      {
-        type: "list",
-        name: "menu",
-        message: "do you wish to add an engineer or an intern",
-        choices: ["Engineer", "Intern"],
-      },
-    ])
-    .then((answer1) => {
-      console.log(answer1);
-      if (answer1.menu === "Engineer") {
-        addEngineer();
-      } else {
-        addIntern();
-      }
+function addEmployee() {
+    console.log('EMPLOYEE GENERATOR')
+    inquirer.prompt(secondArray).then((employeeData) => {
+        var { name, ID, email, github, school, continue} = employee;
+        var employee; 
+        if(role === "Engineer"){
+            employee = new Engineer (name, ID, email, github);
+            console.log(employee);
+        } else if(role === "Intern"){ 
+            employee = new Intern (name, ID, email, school);
+            console.log(employee);
+        }
+        array.push(employee)
+
+        // if (continue === "yes"){
+        //     addEmployee()
+
+        // }
+             
+    })
+    .catch((err) => {
+        console.log(err)
     });
 }
 
-function addEngineer() {
-    inquirer.prompt(engineerQuestions).then((answer) => {
 
-      array.push(answer)
-      console.log(answer)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function menuFunc() {
+//   inquirer
+//     .prompt([
+//       {
+//         type: "list",
+//         name: "menu",
+//         message: "do you wish to add an engineer or an intern",
+//         choices: ["Engineer", "Intern"],
+//       },
+//     ])
+//     .then((answer1) => {
+//       console.log(answer1);
+//       if (answer1.menu === "Engineer") {
+//         addEngineer();
+//       } else {
+//         addIntern();
+//       }
+//     });
+// }
+
+// function addEngineer() {
+//     inquirer.prompt(engineerQuestions).then((answer) => {
+
+//       array.push(answer)
+//       console.log(answer)
       
-      if (answer.continue === "yes") {
-        menuFunc();
-      } else {
-          displaySquad(array)
-      }
+//       if (answer.continue === "yes") {
+//         menuFunc();
+//       } else {
+//           displaySquad(array)
+//       }
       
-      })
+//       })
       
       // .then chain this in the future to get better s
   
-}
-function addIntern() {
-    inquirer.prompt(internQuestions).then((answer) => {
-        console.log(answer);
-        array.push(answer)
-        console.log(array)
+// }
+// function addIntern() {
+//     inquirer.prompt(internQuestions).then((answer) => {
+//         console.log(answer);
+//         array.push(answer)
+//         console.log(array)
        
 
-        if (answer.continue === "yes") {
-            menuFunc();
-          } else {
-              displaySquad(array)
-          }
-      });
-    //.then chain this with classes(in the future).... use more advanced coding 
-}
+//         if (answer.continue === "yes") {
+//             menuFunc();
+//           } else {
+//               displaySquad(array)
+//           }
+//       });
+//     //.then chain this with classes(in the future).... use more advanced coding 
+// }
 
 // print array to html 
 // create the team
 
-function displaySquad(array){
-const pageContent = JSON.stringify(array)
-console.log("final array" + pageContent)
+// function displaySquad(array){
+// const pageContent = JSON.stringify(array)
+// console.log("final array" + pageContent)
 
 
-// fs.writeFile("index.html", pageContent, (err) => {
-//     err ? console.log(err): console.log('its working')
-// })
-}
+// // fs.writeFile("index.html", pageContent, (err) => {
+// //     err ? console.log(err): console.log('its working')
+// // })
+// }
 
 
 
