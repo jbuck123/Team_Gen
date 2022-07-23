@@ -64,11 +64,17 @@ const firstQuestion = [
     },
   ];
 
-const engineerQuestions = [
+const secondQuestion = [
+    {
+        type: "list",
+        Name: "role",
+        message: "Do you want to add an intern or an engineer",
+        choices: ["Intern", "Engineer"]
+    },
   {
     type: "input",
-    name: "engineerName",
-    message: "Please enter the engineer's name.",
+    name: "name",
+    message: "Please enter their name.",
     validate: nameInput => {
         if (nameInput) {
             return true;
@@ -80,8 +86,8 @@ const engineerQuestions = [
   },
   {
     type: "input",
-    name: "engineerID",
-    message: "Please enter the engineer's ID.",
+    name: "ID",
+    message: "Please enter the their ID.",
     validate: id_input => {
         if (isNaN(id_input)) {
             console.log('please enter a valid ID number');
@@ -93,12 +99,12 @@ const engineerQuestions = [
   },
   {
     type: "input",
-    name: "engineerEmail",
-    message: "Please enter the engineer's email.",
+    name: "email",
+    message: "Please enter the their email.",
   },
   {
     type: "input",
-    name: "engineerGithub",
+    name: "github",
     message: "Please enter the engineer's Github username.",
     validate: nameInput => {
         if (nameInput) {
@@ -117,58 +123,8 @@ const engineerQuestions = [
   },
 ];
 
-const internQuestions = [
-    {
-      type: "input",
-      name: "internName",
-      message: "Please enter the intern's name.",
-      validate: nameInput => {
-        if (nameInput) {
-            return true;
-        } else {
-            console.log("Please enter a valid name")
-            return false;
-        }
-    }
-    },
-    {
-      type: "input",
-      name: "internID",
-      message: "Please enter the intern's ID.",
-      validate: id_input => {
-        if (isNaN(id_input)) {
-            console.log('please enter a valid ID number');
-            return false;
-        } else {
-            return true;
-        }
-    }
-    },
-    {
-      type: "input",
-      name: "internEmail",
-      message: "Please enter the intern's email.",
-    },
-    {
-      type: "input",
-      name: "internGithub",
-      message: "Please enter the intern's school.",
-      validate: nameInput => {
-        if (nameInput) {
-            return true;
-        } else {
-            console.log("Please enter a valid name")
-            return false;
-        }
-    }
-    },
-    {
-      type: "list",
-      name: "continue",
-      message: "Do you wish to add to your squad?",
-      choices: ["yes", "no"]
-    },
-  ];
+
+
 
 
 
