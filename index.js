@@ -152,7 +152,7 @@ const secondArray = [
 inquirer.prompt(firstArray).then((managerData) => {
   array.push(managerData)
   console.log(array)
-  if (answer.continue === "yes") {
+  if (managerData.continue === "yes") {
    addEmployee()
   } else {
     // this is where you will display the team
@@ -161,17 +161,17 @@ inquirer.prompt(firstArray).then((managerData) => {
 
 function addEmployee() {
     console.log('EMPLOYEE GENERATOR')
-    inquirer.prompt(secondArray).then((employeeData) => {
-        var { name, ID, email, github, school, continue} = employee;
-        var employee; 
+    inquirer.prompt(secondArray).then((newEmployee, name, ID, email, github) => {
+       
+        var newEmployee; 
         if(role === "Engineer"){
-            employee = new Engineer (name, ID, email, github);
-            console.log(employee);
+            newEmployee = new Engineer (name, ID, email, github);
+            console.log(newEmployee);
         } else if(role === "Intern"){ 
-            employee = new Intern (name, ID, email, school);
-            console.log(employee);
+            newEmployee = new Intern (name, ID, email, school);
+            console.log(newEmployee);
         }
-        array.push(employee)
+        array.push(newEmployee)
 
         // if (continue === "yes"){
         //     addEmployee()
