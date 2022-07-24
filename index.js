@@ -1,6 +1,9 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-const Manager = require("./manager");
+const Engineer = require("./lib/engineer");
+const Manager = require("./lib/manager");
+const Intern = require("./lib/intern")
+
 
 
 
@@ -94,7 +97,7 @@ const secondArray = [
   },
   {
     type: "input",
-    name: "ID",
+    name: "id",
     message: "Please enter the their ID.",
     validate: id_input => {
         if (isNaN(id_input)) {
@@ -114,7 +117,7 @@ const secondArray = [
     type: "input",
     name: "github",
     message: "Please enter the engineer's Github username.",
-    when: (input) => input.role === "Engineer",
+   
     validate: nameInput => {
         if (nameInput) {
             return true;
@@ -127,18 +130,20 @@ const secondArray = [
   {
     name: 'school',
     message: 'where does the intern attend school?',
-    when: (input) => input.role ==="Intern"
+  
   },
-  {
-    type: "list",
-    name: "continue",
-    message: "Do you want to add to your squad?",
-    choices: ["yes", "no"]
-  },
+
 ];
 
 
-
+ContinueArray = [
+    {
+        type: "list",
+        name: "continue",
+        message: "Do you want to add more to your squad?",
+        choices: ["yes", "no"]
+      },
+]
 
 
 
@@ -155,34 +160,45 @@ inquirer.prompt(firstArray).then((managerData) => {
   if (managerData.continue === "yes") {
    addEmployee()
   } else {
-    // this is where you will display the team
+    // displayTeam()
   }
 });
 
-function addEmployee() {
+function addEmployee(){
+
     console.log('EMPLOYEE GENERATOR')
-    inquirer.prompt(secondArray).then((newEmployee, name, ID, email, github) => {
-       
-        var newEmployee; 
-        if(role === "Engineer"){
-            newEmployee = new Engineer (name, ID, email, github);
-            console.log(newEmployee);
-        } else if(role === "Intern"){ 
-            newEmployee = new Intern (name, ID, email, school);
-            console.log(newEmployee);
+    return inquirer.prompt(secondArray)
+    .then((employeeData) => {
+        let employee
+        if ( employeeData.role === "Engineer"){
+            employee = new Intern(employeeData.name, employeeData.id, employeeData.email, employeeData.school)
+            console.log(employee);
+        } if (employeeData.role === "Intern"){
+            employee = new Engineer(employeeData.name ,employeeData.id , employeeData.email, employeeData.github, )
+            console.log(employee);
         }
-        array.push(newEmployee)
+    })
+
+}
+    
+  
+
+
+
+
+
+
+
+
+
+
+
 
         // if (continue === "yes"){
         //     addEmployee()
 
         // }
-             
-    })
-    .catch((err) => {
-        console.log(err)
-    });
-}
+
 
 
 
