@@ -1,6 +1,8 @@
 // link to page creation 
 const generateHTML = require('./src/generateHTML');
 
+
+
 //node modules
 const fs = require("fs");
 const inquirer = require("inquirer");
@@ -171,7 +173,7 @@ if (managerData){
 
 function addEmployee() {
   console.log("EMPLOYEE GENERATOR");
-   inquirer.prompt(secondArray).then((employeeData) => {
+   return inquirer.prompt(secondArray).then((employeeData) => {
      
     let employee;
     if (employeeData.role == "Intern") {
@@ -212,14 +214,11 @@ function addEmployee() {
   });
 }
 
-function printEmployee(){
-    console.log("work in prog")
-    console.log(array)
-    // grab array
-  
-    // 
-    //loop through array 
-    // 
+function htmlBuilder () {
+  console.log("Team created!")
+
+  fs.writeFileSync("output.html", generateHTML(array), "UTF-8")
+
 }
 
 
