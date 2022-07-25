@@ -1,9 +1,16 @@
+// link to page creation 
+const generateHTML = require('./src/generateHTML');
+
+//node modules
 const fs = require("fs");
 const inquirer = require("inquirer");
+
+//team profiles 
 const Engineer = require("./lib/engineer");
 const Manager = require("./lib/manager");
 const Intern = require("./lib/intern");
 
+//declaring the array
 let array = [];
 
 // QUESTIONS
@@ -131,14 +138,6 @@ const secondArray = [
   }
 ];
 
-// ContinueArray = [
-//   {
-//     type: "list",
-//     name: "continue",
-//     message: "Do you want to add more to your squad?",
-//     choices: ["yes", "no"],
-//   },
-// ];
 
 //FUNCTION STARTS
 
@@ -265,130 +264,3 @@ return `
 
 }
 
-// if (continue === "yes"){
-//     addEmployee()
-
-// }
-
-// function menuFunc() {
-//   inquirer
-//     .prompt([
-//       {
-//         type: "list",
-//         name: "menu",
-//         message: "do you wish to add an engineer or an intern",
-//         choices: ["Engineer", "Intern"],
-//       },
-//     ])
-//     .then((answer1) => {
-//       console.log(answer1);
-//       if (answer1.menu === "Engineer") {
-//         addEngineer();
-//       } else {
-//         addIntern();
-//       }
-//     });
-// }
-
-// function addEngineer() {
-//     inquirer.prompt(engineerQuestions).then((answer) => {
-
-//       array.push(answer)
-//       console.log(answer)
-
-//       if (answer.continue === "yes") {
-//         menuFunc();
-//       } else {
-//           displaySquad(array)
-//       }
-
-//       })
-
-// .then chain this in the future to get better s
-
-// }
-// function addIntern() {
-//     inquirer.prompt(internQuestions).then((answer) => {
-//         console.log(answer);
-//         array.push(answer)
-//         console.log(array)
-
-//         if (answer.continue === "yes") {
-//             menuFunc();
-//           } else {
-//               displaySquad(array)
-//           }
-//       });
-//     //.then chain this with classes(in the future).... use more advanced coding
-// }
-
-// print array to html
-// create the team
-
-// function displaySquad(array){
-// const pageContent = JSON.stringify(array)
-// console.log("final array" + pageContent)
-
-// // fs.writeFile("index.html", pageContent, (err) => {
-// //     err ? console.log(err): console.log('its working')
-// // })
-// }
-
-// const firstQuestion = [
-// {
-//     type: 'list',
-//     name: 'members',
-//     message: 'How many members are in your team?',
-//     choices: [
-//         1, 2, 3, 4, 5,
-//     ]
-// },
-
-// ]
-
-// inquirer.prompt(firstQuestion).then((answer) => {
-//     console.log(firstQuestion)
-//     if (answer.members == 1) {
-//         generate1()
-//         console.log(1)
-//     }
-//     else if ( answer.members == 2){
-//         generate2()
-//         console.log(2)
-//     }
-//     else if (answer.members == 3) {
-//         generate3()
-//         console.log(3)
-//     }
-//     else if (answer.members == 4) {
-//         generate4()
-//         console.log(4)
-//     }
-//     else{
-//         generate5()
-//         console.log(5)
-//     }
-//     console.log(answer);
-// })
-
-// generate1()
-// {
-//     console.log("hey1")
-// }
-
-// generate2()
-// {
-//     console.log("hey2")
-// }
-// generate3()
-// {
-//     console.log("hey3")
-// }
-// generate4()
-// {
-//     console.log("hey4")
-// }
-// generate5()
-// {
-//     console.log("hey5")
-// }
