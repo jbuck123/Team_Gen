@@ -145,24 +145,27 @@ const secondArray = [
 //this starts with the first question which is who is manager at Default.
 
 inquirer.prompt(firstArray).then((managerData) => {
-// let employee = new Manager( 
-    
-//     managerData.name,
-//     managerData.id,
-//     managerData.email,
-//     managerData.officeNumber
+let manager;
+if (managerData){
+    manager = new Manager(
+    managerData.managerName,
+    managerData.managerID,
+    managerData.managerEmail,
+    managerData.officeNumber 
+    )
 
-// )
-
-  if (managerData.continue === "yes") {
-    array.push(managerData);
+    array.push(manager);
     console.log(array);
+    
+}
+  if (managerData.continue === "yes") {
+
     addEmployee();
   } else if (managerData.continue === "no"){
      
     const printManager = displayManager(managerData);
     fs.writeFile("output.html", printManager, (err) => {
-        err ? console.log(err): console.log("its working")
+        err ? console.log(err): console.log("write file has printed the manager data")
     })
   }
 });
@@ -173,7 +176,7 @@ function addEmployee() {
      
     let employee;
     if (employeeData.role == "Intern") {
-        console.log()
+        console.log("new Intern")
       employee = new Intern(
         employeeData.name,
         employeeData.id,
@@ -181,9 +184,10 @@ function addEmployee() {
         employeeData.school
         
       );
-      console.log(employee.Intern);
-      employee.printIntern();
+      console.log(employee);
+    //   employee.printIntern();
     } if (employeeData.role == "Engineer") {
+        console.log("new Engineer")
       employee = new Engineer(
         employeeData.name,
         employeeData.id,
@@ -191,12 +195,12 @@ function addEmployee() {
         employeeData.github
       );
       console.log(employee);
-      employee.printEngineer();
+    //   employee.printEngineer();
     }
     array.push(employee);
     
 
-    console.log(array[1].getRole() === "Intern");
+    // console.log(array[1].getRole() === "Intern");
     // this how you can check the role
 
     if (employeeData.continue === "yes"){
