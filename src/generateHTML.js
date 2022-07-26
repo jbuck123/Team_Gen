@@ -9,7 +9,7 @@ const generateHTML = array => {
                 <h5 class="card-header">${manager.getName()}<br /><br />${manager.getRole()}</h5>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${manager.getID()}</li>
-                    <li class="list-group-item">${manager.getEmail()}</li>
+                    <a class="list-group-item" href="mailto:${manager.getEmail()}">Send Email</a>
                     <li class="list-group-item">${manager.getOfficeNumber()}</li>
                 </ul>
             </div>
@@ -28,8 +28,8 @@ const generateHTML = array => {
                 <h5 class="card-header">${engineer.getName()}<br /><br />${engineer.getRole()}</h5>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${engineer.getID()}</li>
-                    <li class="list-group-item">${engineer.getEmail()}</li>
-                    <li class="list-group-item">${engineer.getGithub()}</li>
+                    <a class="list-group-item" href="mailto:${engineer.getEmail()}">Send Email</a>
+                    <a class="list-group-item" href="${engineer.getGithub()}">Github Link</a>.
                 </ul>
             </div>
         </div>
@@ -46,7 +46,7 @@ const generateHTML = array => {
                 <h5 class="card-header">${intern.getName()}<br /><br />${intern.getRole()}</h5>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${intern.getID()}</li>
-                    <li class="list-group-item">${intern.getEmail()}</li>
+                    <a class="list-group-item" href="mailto:${intern.getEmail()}">Send Email</a>
                     <li class="list-group-item">${intern.getSchool()}</li>
                 </ul>
             </div>
@@ -56,7 +56,7 @@ const generateHTML = array => {
   };
 
   const page = [];
-
+// filtering through the objects 
   page.push(
     array
       .filter((manager) => manager.getRole() === "Manager")
